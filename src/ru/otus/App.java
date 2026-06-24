@@ -112,7 +112,7 @@ public class App {
         }while(input.isEmpty());
         return input;
     }
-
+   int test = 0;
     private static Color askForColor(Scanner scanner){
         Color color = null;
         do {
