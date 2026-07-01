@@ -4,10 +4,13 @@ import ru.otus.animals.Animal;
 import ru.otus.animals.Color;
 import ru.otus.factory.AnimalFactory;
 import ru.otus.factory.AnimalType;
+import ru.otus.utils.NameUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+
 
 public class App {
 
@@ -48,7 +51,7 @@ public class App {
                 System.out.println("Введена неверная команда, попробуйте ещё раз");
             }
             System.out.printf("Введите одну из команд (%s)", String.join("/", Command.VALUES));
-            input = scanner.next();
+            input = scanner.nextLine();
         }
         while (Command.doesNotContain(input));
         return Command.fromString(input);
@@ -61,7 +64,7 @@ public class App {
                 System.out.println("Введен неверный тип животного, попробуйте ещё раз");
             }
             System.out.printf("Введите тип животного (%s)", String.join("/", AnimalType.VALUES));
-            input = scanner.next();
+            input = scanner.nextLine();
         }
         while (AnimalType.doesNotContain(input));
         return AnimalType.fromString(input);
@@ -72,7 +75,7 @@ public class App {
         do {
             System.out.print("Введите возраст животного: ");
             try{
-                input = Integer.parseInt(scanner.next());
+                input = Integer.parseInt(scanner.nextLine());
                 if (input <= 0) {
                     System.out.println("Введен неверный возраст, попробуйте ещё раз");
                 }
@@ -89,7 +92,7 @@ public class App {
         do {
             System.out.print("Введите вес животного: ");
             try{
-                input = Integer.parseInt(scanner.next());
+                input = Integer.parseInt(scanner.nextLine());
                 if (input <= 0) {
                     System.out.println("Введен неверный вес, попробуйте ещё раз");
                 }
@@ -102,22 +105,23 @@ public class App {
     }
 
     private static String askForName(Scanner scanner){
-        String input = null;
+        boolean nameIsNotValid;
+        String input;
         do{
             System.out.print("Введите имя животного: ");
-            input = scanner.next().trim();
-            if (input == null){
-                System.out.println("Имя животного не может быть пустым");
+            input = scanner.nextLine().trim();
+            nameIsNotValid = NameUtils.isNotValidName(input);
+            if (nameIsNotValid){
+                System.out.println("Введите корректно имя животного (Допускаются пробелы, тире и буквы латинского и кириллического алфавита)");
             }
-        }while(input.isEmpty());
+        }while(nameIsNotValid);
         return input;
     }
-   int test = 0;
     private static Color askForColor(Scanner scanner){
         Color color = null;
         do {
-            System.out.println("Введите цвет животного: " );
-            String input = scanner.next().trim();
+            System.out.printf("Введите цвет животного (%s): ", String.join(", ",Color.VALUES));
+            String input = scanner.nextLine().trim();
             for (Color type : Color.values()){
                 if(input.toLowerCase().equals(type.getValue())){
                     color = type;
