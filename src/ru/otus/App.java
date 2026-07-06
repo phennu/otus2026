@@ -13,15 +13,16 @@ import java.util.Scanner;
 
 
 public class App {
+    private static Scanner scanner;
 
     public static void main(String[] args){
         List<Animal> animals = new ArrayList<>();
         AnimalFactory factory = new AnimalFactory();
-        Scanner scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
 
         Command currentCommand;
         do{
-            currentCommand = askForCommand(scanner);
+            currentCommand = askForCommand();
             if (currentCommand == Command.LIST){
                 if(animals.isEmpty()){
                     System.out.println("Список пуст");
@@ -31,12 +32,12 @@ public class App {
                 }
 
             }else if (currentCommand == Command.ADD){
-                AnimalType animalType = askForAnimalType(scanner);
+                AnimalType animalType = askForAnimalType();
                 Animal animal = factory.create(animalType);
-                animal.setName(askForName(scanner));
-                animal.setAge(askForAge(scanner));
-                animal.setWeight(askForWeight(scanner));
-                animal.setColor(askForColor(scanner));
+                animal.setName(askForName());
+                animal.setAge(askForAge());
+                animal.setWeight(askForWeight());
+                animal.setColor(askForColor());
                 animals.add(animal);
                 animal.say();
             }
@@ -44,7 +45,7 @@ public class App {
         }while (currentCommand != Command.EXIT);
 
     }
-    private static Command askForCommand(Scanner scanner){
+    private static Command askForCommand(){
         String input = null;
         do {
             if (input != null){
@@ -57,7 +58,7 @@ public class App {
         return Command.fromString(input);
     }
 
-    private static AnimalType askForAnimalType(Scanner scanner){
+    private static AnimalType askForAnimalType(){
         String input = null;
         do {
             if (input != null){
@@ -70,7 +71,7 @@ public class App {
         return AnimalType.fromString(input);
     }
 
-    private static int askForAge(Scanner scanner) {
+    private static int askForAge() {
         int input = 0;
         do {
             System.out.print("Введите возраст животного: ");
@@ -87,7 +88,7 @@ public class App {
         return input;
     }
 
-    private static int askForWeight(Scanner scanner) {
+    private static int askForWeight() {
         int input = 0;
         do {
             System.out.print("Введите вес животного: ");
@@ -104,7 +105,7 @@ public class App {
         return input;
     }
 
-    private static String askForName(Scanner scanner){
+    private static String askForName(){
         boolean nameIsNotValid;
         String input;
         do{
@@ -117,7 +118,7 @@ public class App {
         }while(nameIsNotValid);
         return input;
     }
-    private static Color askForColor(Scanner scanner){
+    private static Color askForColor(){
         Color color = null;
         do {
             System.out.printf("Введите цвет животного (%s): ", String.join(", ",Color.VALUES));
