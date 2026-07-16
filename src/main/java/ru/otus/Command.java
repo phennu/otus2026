@@ -6,6 +6,8 @@ import java.util.List;
 public enum Command {
     ADD,
     LIST,
+    FIND,
+    UPDATE,
     EXIT;
 
     public static final List<String> VALUES = collectValues();

@@ -1,8 +1,5 @@
 package ru.otus.animals;
 
-import ru.otus.Command;
-import ru.otus.factory.AnimalType;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +24,13 @@ public enum Color {
             result.add(type.value);
         }
         return result;
+    }
+
+    public static Color fromString(String value){
+        if (value == null){
+            return null;
+        }
+        return Color.valueOf(value.toUpperCase().trim());
     }
 
     public String getValue(){

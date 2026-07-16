@@ -1,5 +1,7 @@
 package ru.otus.animals;
 
+import ru.otus.factory.AnimalType;
+
 public abstract class Animal {
     private String name;
     private int age;
@@ -75,4 +77,5 @@ public abstract class Animal {
 
         return "лет";
     }
+    public abstract AnimalType getType();
 }
