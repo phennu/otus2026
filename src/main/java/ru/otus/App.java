@@ -3,7 +3,6 @@ package ru.otus;
 import ru.otus.animals.Animal;
 import ru.otus.animals.Color;
 import ru.otus.database.IDBConnectionManager;
-import ru.otus.database.SqlConnectionManager;
 import ru.otus.factory.AnimalFactory;
 import ru.otus.factory.AnimalType;
 import ru.otus.factory.DBFactory;

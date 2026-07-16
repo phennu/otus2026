@@ -14,7 +14,8 @@ import java.util.List;
 
 public class AnimalTable extends AbsTable implements IAnimalTable {
 
-    private AnimalFactory factory;
+    private final AnimalFactory factory;
+
     public AnimalTable(AnimalFactory factory, IDBConnectionManager idbConnectionManager) throws SQLException {
         super("animals", idbConnectionManager);
         this.factory = factory;

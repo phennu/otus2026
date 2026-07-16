@@ -7,7 +7,7 @@ import ru.otus.exceptions.DbNotSupported;
 import java.sql.SQLException;
 
 public class DBFactory {
-    public IDBConnectionManager getConnectionManager (String dbType) throws SQLException{
+    public IDBConnectionManager getConnectionManager (String dbType){
         switch (dbType){
             case "SQL_DB" ->{
                 return new SqlConnectionManager();

@@ -1,8 +1,6 @@
 package ru.otus.tables;
 
 import ru.otus.database.IDBConnectionManager;
-import ru.otus.database.SqlConnectionManager;
-import ru.otus.factory.DBFactory;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -13,7 +11,7 @@ public class AbsTable {
     protected String tableName;
     protected Map<String, String> columns;
 
-    public AbsTable(String tableName, IDBConnectionManager idbConnectionManager) throws SQLException {
+    public AbsTable(String tableName, IDBConnectionManager idbConnectionManager) {
         this.idbConnectionManager = idbConnectionManager;
         this.tableName = tableName;
         columns = new HashMap<>();
