@@ -9,4 +9,6 @@ public interface IAnimalTable {
     List<Animal> findAllAnimals();
     List<Animal> findAnimalsByType(AnimalType type);
     void create(Animal animal);
+    void updateAnimalByName(Animal animal);
+    Animal findAnimalByName(String name);
 }

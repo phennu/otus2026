@@ -42,7 +42,7 @@ public class AnimalTable extends AbsTable implements IAnimalTable {
 
         return getAnimalsByQuery(sqlQuery);
     }
-
+    @Override
     public Animal findAnimalByName(String name) {
         String sqlQuery = "SELECT name, age, weight, color, type FROM " + tableName
                 + " WHERE name = '" + name + "'";
@@ -93,7 +93,7 @@ public class AnimalTable extends AbsTable implements IAnimalTable {
             throw new RuntimeException(e);
         }
     }
-
+    @Override
     public void updateAnimalByName(Animal animal) {
         String sqlQuery = "UPDATE " + tableName + " SET ";
         sqlQuery += "age = "+ animal.getAge() + ", ";
