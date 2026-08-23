@@ -42,7 +42,7 @@ public class RegisterPageTests {
 
     @Test
     @DisplayName("Регистрация нового пользователя и вход")
-    void registerNewUserAndLogin() {
+    void registerNewUserAndLogin() throws InterruptedException {
         RegisterPage page = new RegisterPage(driver);
         page.open();
 
@@ -50,6 +50,7 @@ public class RegisterPageTests {
         page.enterText("email", email);
         page.enterText("password",password);
         page.submitForm("submit");
+        Thread.sleep(1000);
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.open();
@@ -59,6 +60,8 @@ public class RegisterPageTests {
         loginPage.submitForm("submit");
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//button[normalize-space()='Создать новый список']")));
 
         WebElement tagName = wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.cssSelector("h2")));
