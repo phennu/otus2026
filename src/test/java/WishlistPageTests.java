@@ -20,8 +20,8 @@ public class WishlistPageTests {
 
     private WebDriver driver = null;
 
-    private String login = "inurtazin";
-    private String password = "123456";
+    private String login = System.getProperty("login");
+    private String password = System.getProperty("password");
     private String listName;
 
     @BeforeEach
