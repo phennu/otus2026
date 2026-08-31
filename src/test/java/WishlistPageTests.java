@@ -60,25 +60,20 @@ public class WishlistPageTests {
         wishlistPage.enterText("text", listName);
 
         wishlistPage.createList();
-        Thread.sleep(1000);
 
         WebElement card = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.cssSelector(".g-4.row > .col:first-child .card-title")));
-        assertEquals(listName,card.getText());
-
-        Thread.sleep(1000);
 
         WebElement cardNew = wait.until(ExpectedConditions.visibilityOfElementLocated(
                         By.xpath("//div[contains(@class,'card-title') and normalize-space()='"
                                         + listName + "']/ancestor::div[contains(@class,'card')]")));
 
-        Thread.sleep(1000);
+        WebElement deleteButton = wait.until(ExpectedConditions.elementToBeClickable(
+                cardNew.findElement(By.cssSelector("button.btn.btn-danger"))));
 
-        WebElement deleteButton = cardNew.findElement(By.cssSelector("button.btn.btn-danger"));
+       deleteButton.click();
 
-        deleteButton.click();
-
-        Thread.sleep(3000);
+        assertEquals(listName,card.getText());
 
     }
 

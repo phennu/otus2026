@@ -44,6 +44,7 @@ public class RegisterPageTests {
     @DisplayName("Регистрация нового пользователя и вход")
     void registerNewUserAndLogin() throws InterruptedException {
         RegisterPage page = new RegisterPage(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         page.open();
 
         page.enterText("text", login);
@@ -59,7 +60,6 @@ public class RegisterPageTests {
         loginPage.enterText("password",password);
         loginPage.submitForm("submit");
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOfElementLocated(
                 By.xpath("//button[normalize-space()='Создать новый список']")));
 
