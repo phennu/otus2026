@@ -14,8 +14,6 @@ public class WishlistsPage extends AbsBasePage {
     private static final String PATH = "/wishlist";
     private final By modalTitle = By.cssSelector("div.modal-title.h4");
     private final By cardTile = By.cssSelector(".g-4.row.row-cols-lg-3.row-cols-md-2.row-cols-1 .card");
-    private final By deleteButton = By.cssSelector("button.btn.btn-danger");
-
 
     public WishlistsPage(WebDriver driver) {
         super(driver, PATH);

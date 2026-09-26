@@ -39,8 +39,4 @@ public class CommonWaiter {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public void waitForNumberOfElementsToBe(By locator, int number) {
-        wait.until(ExpectedConditions.numberOfElementsToBe(locator, number));
-    }
-
 }
