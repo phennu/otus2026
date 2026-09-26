@@ -1,12 +1,11 @@
 package pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 
 public class WishlistsPage extends AbsBasePage {
@@ -39,18 +38,18 @@ public class WishlistsPage extends AbsBasePage {
         waiter.waitUntilClickable(By.cssSelector(createListButton)).click();
     }
 
-    public boolean isModalTitleVisible(){
+    public boolean isModalTitleVisible() {
         return waiter.waitForCondition(ExpectedConditions.visibilityOfElementLocated(modalTitle));
     }
 
-    public WebElement getFirstCardTileInfo(){
+    public WebElement getFirstCardTileInfo() {
         return waiter.waitForElement(cardTile);
     }
 
     public WebElement waitForCardToBeVisible(String listName) {
         String newCardTile = "//div[contains(@class,'card-title') and normalize-space()='%s']" +
                 "/ancestor::div[contains(@class,'card')]";
-        String xpath = String.format(newCardTile,listName);
+        String xpath = String.format(newCardTile, listName);
 
         return waiter.waitForElement(By.xpath(xpath));
     }
@@ -58,7 +57,7 @@ public class WishlistsPage extends AbsBasePage {
     public boolean waitForCardToBeInvisible(String listName) {
         String newCardTile = "//div[contains(@class,'card-title') and normalize-space()='%s']" +
                 "/ancestor::div[contains(@class,'card')]";
-        String xpath = String.format(newCardTile,listName);
+        String xpath = String.format(newCardTile, listName);
 
         return waiter.waitForElementToBeInvisible(By.xpath(xpath));
     }

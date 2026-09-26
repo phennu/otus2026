@@ -1,7 +1,5 @@
 package waiters;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class CommonWaiter {
 
@@ -27,20 +27,20 @@ public class CommonWaiter {
         }
     }
 
-    public WebElement waitForElement(By locator){
+    public WebElement waitForElement(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    public boolean waitForElementToBeInvisible(By locator){
+    public boolean waitForElementToBeInvisible(By locator) {
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
     }
 
-    public WebElement waitUntilClickable(By locator){
+    public WebElement waitUntilClickable(By locator) {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     public void waitForNumberOfElementsToBe(By locator, int number) {
-         wait.until(ExpectedConditions.numberOfElementsToBe(locator, number));
+        wait.until(ExpectedConditions.numberOfElementsToBe(locator, number));
     }
 
 }

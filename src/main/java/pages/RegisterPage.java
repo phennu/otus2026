@@ -13,6 +13,7 @@ public class RegisterPage extends AbsBasePage {
     public RegisterPage(WebDriver driver) {
         super(driver, PATH);
     }
+
     public void enterText(String byCss, String enterText) {
         String selector = String.format("input[type='%s']", byCss);
         driver.findElement(By.cssSelector(selector)).sendKeys(enterText);
@@ -22,10 +23,12 @@ public class RegisterPage extends AbsBasePage {
         String selector = String.format("button[type='%s']", byCss);
         driver.findElement(By.cssSelector(selector)).click();
     }
-    public String  getTagNameText(){
+
+    public String getTagNameText() {
         return waiter.waitForElement(tagName).getText();
     }
-    public boolean isCreateListButtonVisible(){
+
+    public boolean isCreateListButtonVisible() {
         return waiter.waitForCondition(ExpectedConditions.visibilityOfElementLocated(createListButton));
     }
 

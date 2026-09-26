@@ -9,21 +9,21 @@ public class LoginPage extends AbsBasePage {
     private final By alert = By.cssSelector("div[role='alert']");
 
     public LoginPage(WebDriver driver) {
-            super(driver, PATH);
-        }
+        super(driver, PATH);
+    }
 
-        public void enterText(String byCss, String enterText) {
-            String selector = String.format("input[type='%s']", byCss);
-            driver.findElement(By.cssSelector(selector)).sendKeys(enterText);
-        }
+    public void enterText(String byCss, String enterText) {
+        String selector = String.format("input[type='%s']", byCss);
+        driver.findElement(By.cssSelector(selector)).sendKeys(enterText);
+    }
 
-         public void submitForm(String byCss) {
-            String selector = String.format("button[type='%s']", byCss);
-            driver.findElement(By.cssSelector(selector)).click();
-        }
+    public void submitForm(String byCss) {
+        String selector = String.format("button[type='%s']", byCss);
+        driver.findElement(By.cssSelector(selector)).click();
+    }
 
-        public String getAlertText(){
-            return waiter.waitForElement((alert)).getText();
-        }
+    public String getAlertText() {
+        return waiter.waitForElement((alert)).getText();
+    }
 
 }

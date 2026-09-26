@@ -8,12 +8,12 @@ public abstract class AbsBasePage extends AbsPageObject {
     private String path;
     private String baseUrl = System.getProperty("baseUrl");
 
-    public AbsBasePage(WebDriver driver, String path){
+    public AbsBasePage(WebDriver driver, String path) {
         super(driver);
-        this.path=path;
+        this.path = path;
     }
 
-    public void open(){
+    public void open() {
 
         driver.get(baseUrl + path);
 

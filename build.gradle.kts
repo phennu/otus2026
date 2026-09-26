@@ -1,5 +1,5 @@
 plugins {
-    id ("java")
+    id("java")
 }
 
 
@@ -24,8 +24,8 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
-    systemProperty("browser",System.getProperty("browser", "chrome"))
-    systemProperty("login",System.getProperty("login", "inurtazin"))
-    systemProperty("password",System.getProperty("password", "123456"))
+    systemProperty("browser", System.getProperty("browser", "chrome"))
+    systemProperty("login", System.getProperty("login", "inurtazin"))
+    systemProperty("password", System.getProperty("password", "123456"))
     systemProperty("baseUrl", "https://wishlist.otus.kartushin.su")
 }

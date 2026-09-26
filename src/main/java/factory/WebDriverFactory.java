@@ -11,21 +11,21 @@ public class WebDriverFactory {
 
     private static String browser = System.getProperty("browser");
 
-    public static WebDriver create(String... arguments){
-        switch (browser.trim().toLowerCase()){
-            case "chrome":{
+    public static WebDriver create(String... arguments) {
+        switch (browser.trim().toLowerCase()) {
+            case "chrome": {
                 return createChromeDriver(arguments);
             }
-            case "firefox":{
+            case "firefox": {
                 return createFirefoxDriver(arguments);
             }
-            default:{
-                throw  new BrowserNotFoundException(browser);
+            default: {
+                throw new BrowserNotFoundException(browser);
             }
         }
     }
 
-    private static WebDriver createChromeDriver(String... arguments){
+    private static WebDriver createChromeDriver(String... arguments) {
         ChromeOptions options = new ChromeOptions();
         options.addArguments(arguments);
 
@@ -33,7 +33,7 @@ public class WebDriverFactory {
 
     }
 
-    private static WebDriver createFirefoxDriver(String... arguments){
+    private static WebDriver createFirefoxDriver(String... arguments) {
         FirefoxOptions options = new FirefoxOptions();
         options.addArguments(arguments);
 

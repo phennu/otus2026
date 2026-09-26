@@ -8,7 +8,7 @@ public class AbsPageObject {
     protected WebDriver driver;
     protected CommonWaiter waiter;
 
-    public AbsPageObject(WebDriver driver){
+    public AbsPageObject(WebDriver driver) {
         this.driver = driver;
 
         PageFactory.initElements(driver, this);

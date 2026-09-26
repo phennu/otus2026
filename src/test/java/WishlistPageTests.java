@@ -1,20 +1,17 @@
 import factory.WebDriverFactory;
-import pages.LoginPage;
-import pages.WishlistGiftsPage;
-import pages.WishlistsPage;
-import utility.GeneratedTestData;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import pages.LoginPage;
+import pages.WishlistGiftsPage;
+import pages.WishlistsPage;
+import utility.GeneratedTestData;
 
 import java.net.URI;
 
@@ -40,7 +37,7 @@ public class WishlistPageTests {
         loginPage.open();
 
         loginPage.enterText("text", login);
-        loginPage.enterText("password",password);
+        loginPage.enterText("password", password);
         loginPage.submitForm("submit");
     }
 
@@ -72,7 +69,7 @@ public class WishlistPageTests {
 
         wishlistsPage.waitForCardToBeInvisible(listName);
 
-        assertEquals(listName,newCardTileText);
+        assertEquals(listName, newCardTileText);
 
     }
 
@@ -91,7 +88,7 @@ public class WishlistPageTests {
         final String imageUrlInput = GeneratedTestData.generatedUrl();
         WebElement cardTile;
 
-        if(driver.findElements(By.cssSelector(".g-4.row > .col")).isEmpty()){
+        if (driver.findElements(By.cssSelector(".g-4.row > .col")).isEmpty()) {
             logger.info("Creating new wishlist {}", listName);
             wishlistsPage.createNewListText();
             wishlistsPage.enterText("text", listName);
@@ -99,7 +96,7 @@ public class WishlistPageTests {
 
             cardTile = wishlistsPage.waitForCardToBeVisible(listName);
 
-        }else{
+        } else {
             cardTile = wishlistsPage.getFirstCardTileInfo();
             String cardTileText = cardTile.findElement(By.cssSelector(".card-title")).getText();
             logger.info("Got existing wishlist with name {}", cardTileText);
@@ -123,14 +120,13 @@ public class WishlistPageTests {
             String wishlistDescriptionInput,
             String shopUrlInput,
             String priceInput,
-            String imageUrlInput)
-    {
+            String imageUrlInput) {
         logger.info("Creating new gift");
-        logger.info("Gift name: {}",wishlistNameInput);
-        logger.info("Gift description: {}",wishlistDescriptionInput);
-        logger.info("Shop URL: {}",shopUrlInput);
-        logger.info("Gift price: {}",priceInput);
-        logger.info("Image URL: {}",imageUrlInput);
+        logger.info("Gift name: {}", wishlistNameInput);
+        logger.info("Gift description: {}", wishlistDescriptionInput);
+        logger.info("Shop URL: {}", shopUrlInput);
+        logger.info("Gift price: {}", priceInput);
+        logger.info("Image URL: {}", imageUrlInput);
 
         String cardTileText = cardTile.findElement(By.cssSelector(".card-title")).getText();
         String cardTileGiftsText = cardTile.findElement(By.cssSelector(".text-muted")).getText();
@@ -162,7 +158,7 @@ public class WishlistPageTests {
 
         WebElement newCardTile = wishlistsPage.waitForCardToBeVisible(cardTileText);
         String newCardTileGiftsText = newCardTile.findElement(By.cssSelector(".text-muted")).getText();
-        int newGiftsNumber = Integer.parseInt(newCardTileGiftsText.replaceAll("\\D+",""));
+        int newGiftsNumber = Integer.parseInt(newCardTileGiftsText.replaceAll("\\D+", ""));
         logger.info("New gifts number: {}", newGiftsNumber);
 
         assertEquals(wishlistNameInput, createdGiftName);

@@ -16,32 +16,32 @@ public class LoginPageTests {
     private static final Logger logger = LogManager.getLogger(LoginPageTests.class);
 
     @BeforeEach
-    public void init(){
+    public void init() {
         this.driver = WebDriverFactory.create("--headless=new");
     }
 
-        @AfterEach
-        void close() {
+    @AfterEach
+    void close() {
         if (driver != null) {
             driver.quit();
         }
     }
 
-        @Test
-        @DisplayName("Вход незарегистрированным пользователем")
-        void unregisteredUserLogin() {
+    @Test
+    @DisplayName("Вход незарегистрированным пользователем")
+    void unregisteredUserLogin() {
 
-            logger.info("---Starting test of incorrect login in system---");
-            LoginPage page = new LoginPage(driver);
-            page.open();
-            logger.info("Using incorrect data to login");
+        logger.info("---Starting test of incorrect login in system---");
+        LoginPage page = new LoginPage(driver);
+        page.open();
+        logger.info("Using incorrect data to login");
 
-            page.enterText("text", "test");
-            page.enterText("password","test");
-            page.submitForm("submit");
+        page.enterText("text", "test");
+        page.enterText("password", "test");
+        page.submitForm("submit");
 
-            String alert = page.getAlertText();
-            logger.info("Got error of incorrect data to login");
-            assertEquals("Неверное имя пользователя или пароль",alert);
-        }
+        String alert = page.getAlertText();
+        logger.info("Got error of incorrect data to login");
+        assertEquals("Неверное имя пользователя или пароль", alert);
+    }
 }
