@@ -1,19 +1,16 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
+import pageobject.AbsPageObject;
 
-public abstract class AbsBasePage {
+public abstract class AbsBasePage extends AbsPageObject {
 
-    protected WebDriver driver;
-    private String baseUrl = System.getProperty("baseUrl");
     private String path;
+    private String baseUrl = System.getProperty("baseUrl");
 
     public AbsBasePage(WebDriver driver, String path){
-        this.driver = driver;
-        this.path = path;
-
-        PageFactory.initElements(driver, this);
+        super(driver);
+        this.path=path;
     }
 
     public void open(){
@@ -21,7 +18,5 @@ public abstract class AbsBasePage {
         driver.get(baseUrl + path);
 
     }
-
-
 
 }

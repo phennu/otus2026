@@ -3,16 +3,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.LoginPage;
 import utility.GeneratedTestData;
 import pages.RegisterPage;
-
-import java.time.Duration;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -20,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class RegisterPageTests {
 
     private WebDriver driver = null;
+    private final static Logger logger = LogManager.getLogger(RegisterPageTests.class);
     private String login;
     private String email;
     private String password;
@@ -44,9 +41,9 @@ public class RegisterPageTests {
     @DisplayName("Регистрация нового пользователя и вход")
     void registerNewUserAndLogin() throws InterruptedException {
         RegisterPage page = new RegisterPage(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         page.open();
-
+        logger.info("---Starting test of creating new user and login in---");
+        logger.info("Using generated data to create user");
         page.enterText("text", login);
         page.enterText("email", email);
         page.enterText("password",password);
@@ -55,18 +52,16 @@ public class RegisterPageTests {
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.open();
-
+        logger.info("Login with created user: {}", login);
         loginPage.enterText("text", login);
         loginPage.enterText("password",password);
         loginPage.submitForm("submit");
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//button[normalize-space()='Создать новый список']")));
+        page.isCreateListButtonVisible();
 
-        WebElement tagName = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.cssSelector("h2")));
-
-        assertEquals("Мои списки желаний",tagName.getText());
+        String tagName = page.getTagNameText();
+        logger.info("User wishlist page is loaded");
+        assertEquals("Мои списки желаний",tagName);
     }
 
 }
