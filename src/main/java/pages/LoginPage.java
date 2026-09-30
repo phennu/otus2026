@@ -3,27 +3,33 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class LoginPage extends AbsBasePage {
 
     private static final String PATH = "/login";
     private final By alert = By.cssSelector("div[role='alert']");
+    private final By login = By.cssSelector("input[type='text']");
+    private final By submitButton = By.cssSelector("button[type='password']");
 
     public LoginPage(WebDriver driver) {
         super(driver, PATH);
     }
 
-    public void enterText(String byCss, String enterText) {
-        String selector = String.format("input[type='%s']", byCss);
-        driver.findElement(By.cssSelector(selector)).sendKeys(enterText);
+    public void enterText(String enterText) {
+        waiter.waitForElement(login).sendKeys(enterText);
     }
 
-    public void submitForm(String byCss) {
-        String selector = String.format("button[type='%s']", byCss);
-        driver.findElement(By.cssSelector(selector)).click();
+    public void submitButtonClick() {
+        waiter.waitUntilClickable(submitButton).click();
     }
 
     public String getAlertText() {
         return waiter.waitForElement((alert)).getText();
+    }
+
+    public void assertionForText(String alert){
+        assertEquals("Неверное имя пользователя или пароль", alert);
     }
 
 }

@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class WishlistsPage extends AbsBasePage {
 
@@ -58,6 +60,10 @@ public class WishlistsPage extends AbsBasePage {
         String xpath = String.format(newCardTile, listName);
 
         return waiter.waitForElementToBeInvisible(By.xpath(xpath));
+    }
+
+    public void assertForTwoText(String listName, String newCardTileText){
+        assertEquals(listName, newCardTileText);
     }
 
 }

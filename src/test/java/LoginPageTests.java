@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class LoginPageTests {
 
     private WebDriver driver = null;
@@ -36,12 +34,12 @@ public class LoginPageTests {
         page.open();
         logger.info("Using incorrect data to login");
 
-        page.enterText("text", "test");
-        page.enterText("password", "test");
-        page.submitForm("submit");
+        page.enterText("test");
+        page.enterText("test");
+        page.submitButtonClick();
 
         String alert = page.getAlertText();
+        page.assertionForText(alert);
         logger.info("Got error of incorrect data to login");
-        assertEquals("Неверное имя пользователя или пароль", alert);
     }
 }

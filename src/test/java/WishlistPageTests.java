@@ -15,9 +15,6 @@ import utility.GeneratedTestData;
 
 import java.net.URI;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 public class WishlistPageTests {
 
     private WebDriver driver = null;
@@ -36,9 +33,9 @@ public class WishlistPageTests {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.open();
 
-        loginPage.enterText("text", login);
-        loginPage.enterText("password", password);
-        loginPage.submitForm("submit");
+        loginPage.enterText(login);
+        loginPage.enterText(password);
+        loginPage.submitButtonClick();
     }
 
     @AfterEach
@@ -68,13 +65,12 @@ public class WishlistPageTests {
         deleteButton.click();
 
         wishlistsPage.waitForCardToBeInvisible(listName);
-
-        assertEquals(listName, newCardTileText);
+        wishlistsPage.assertForTwoText(listName, newCardTileText);
 
     }
 
     @Test
-    @DisplayName("Создание нового списка и добавление подарка")
+    @DisplayName("Добавление подарка в вишлист")
     void addNewListWithGift() {
 
         logger.info("---Starting test of adding new gift to wishlist---");
@@ -86,7 +82,7 @@ public class WishlistPageTests {
         final String shopUrlInput = GeneratedTestData.generatedUrl();
         final String priceInput = GeneratedTestData.generatedGiftPrice();
         final String imageUrlInput = GeneratedTestData.generatedUrl();
-        WebElement cardTile;
+        WebElement cardTile; //убрать на уровень pageObjectа
 
         if (driver.findElements(By.cssSelector(".g-4.row > .col")).isEmpty()) {
             logger.info("Creating new wishlist {}", listName);
@@ -161,12 +157,12 @@ public class WishlistPageTests {
         int newGiftsNumber = Integer.parseInt(newCardTileGiftsText.replaceAll("\\D+", ""));
         logger.info("New gifts number: {}", newGiftsNumber);
 
-        assertEquals(wishlistNameInput, createdGiftName);
-        assertEquals(wishlistDescriptionInput, createdGiftDescription);
-        assertEquals(shopUrlInput + "/", createdGiftShopUrl);
-        assertEquals("Цена: " + priceInput + " руб.", createdGiftPrice);
-        assertEquals(imageUrlInput + "/", createdGiftImageUrl);
-        assertTrue(newGiftsNumber > giftsNumber);
+        wishlistGiftsPage.assertForTwoText(wishlistNameInput, createdGiftName);
+        wishlistGiftsPage.assertForTwoText(wishlistDescriptionInput, createdGiftDescription);
+        wishlistGiftsPage.assertForTwoText(shopUrlInput + "/", createdGiftShopUrl);
+        wishlistGiftsPage.assertForTwoText("Цена: " + priceInput + " руб.", createdGiftPrice);
+        wishlistGiftsPage.assertForTwoText(imageUrlInput + "/", createdGiftImageUrl);
+        wishlistGiftsPage.assertTrueForNumbers(newGiftsNumber, giftsNumber);
 
     }
 }

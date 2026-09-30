@@ -6,6 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class WishlistGiftsPage extends AbsBasePage {
 
     private static final Logger logger = LogManager.getLogger(WishlistGiftsPage.class);
@@ -57,6 +60,14 @@ public class WishlistGiftsPage extends AbsBasePage {
     public void returnToWishlistsPage() {
         logger.info("Returning to wishlist page");
         driver.findElement(By.cssSelector("a.nav-link[href='/wishlists']")).click();
+    }
+
+    public void assertForTwoText(String text1, String text2){
+        assertEquals(text1, text2);
+    }
+
+    public void assertTrueForNumbers(int newGiftsNumber, int giftsNumber){
+        assertTrue(newGiftsNumber > giftsNumber);
     }
 }
 

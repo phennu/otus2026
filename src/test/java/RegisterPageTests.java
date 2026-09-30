@@ -10,7 +10,6 @@ import pages.LoginPage;
 import pages.RegisterPage;
 import utility.GeneratedTestData;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class RegisterPageTests {
@@ -53,15 +52,15 @@ public class RegisterPageTests {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.open();
         logger.info("Login with created user: {}", login);
-        loginPage.enterText("text", login);
-        loginPage.enterText("password", password);
-        loginPage.submitForm("submit");
+        loginPage.enterText(login);
+        loginPage.enterText(password);
+        loginPage.submitButtonClick();
 
         page.isCreateListButtonVisible();
 
         String tagName = page.getTagNameText();
+        page.assertForTagName(tagName);
         logger.info("User wishlist page is loaded");
-        assertEquals("Мои списки желаний", tagName);
     }
 
 }

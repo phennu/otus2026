@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class RegisterPage extends AbsBasePage {
 
     private static final String PATH = "/register";
@@ -30,6 +32,10 @@ public class RegisterPage extends AbsBasePage {
 
     public boolean isCreateListButtonVisible() {
         return waiter.waitForCondition(ExpectedConditions.visibilityOfElementLocated(createListButton));
+    }
+
+    public void assertForTagName(String tagName){
+        assertEquals("Мои списки желаний", tagName);
     }
 
 }
