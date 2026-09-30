@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import waiters.CommonWaiter;
 
-public class AbsPageObject {
+public abstract class AbsPageObject {
     protected WebDriver driver;
     protected CommonWaiter waiter;
 
